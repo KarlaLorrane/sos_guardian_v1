@@ -111,7 +111,7 @@ class HomeScreen extends StatelessWidget {
             child: Center(
               // logo
               child: Image.asset(
-                '/guardiansoslogo.png',
+                'assets/images/guardiansoslogo.png',
                 height: sosButtonHeight * 2.6,
               ),
             ),

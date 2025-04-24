@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+//some assets to be used for style 
+const kFormTextColor = Colors.white;
+const kFormBackgroundColor = Colors.black87;
+const kFormBorderColor = Colors.white;
+
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
@@ -11,6 +16,7 @@ class _ProfilePageState extends State<ProfilePage> {
   final _nameController = TextEditingController();
   final _medicalConditionsController = TextEditingController();
   final _vehicleInfoController = TextEditingController();
+  final _vehicleLicensePlateController = TextEditingController();
 
   String? _selectedBloodType;
 
@@ -29,7 +35,9 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Profile"),
+        title: const Text(
+          "Profile",
+          style: TextStyle(color: kFormTextColor),),
         centerTitle: true,
         backgroundColor: Colors.black87,
         foregroundColor: Colors.white,
@@ -40,7 +48,7 @@ class _ProfilePageState extends State<ProfilePage> {
           children: [
             const Text(
               "Personal Information",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: kFormTextColor),
             ),
             const SizedBox(height: 16),
 
@@ -51,6 +59,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 labelText: "Full Name",
                 hintText: "Enter your name",
                 border: OutlineInputBorder(),
+                hintStyle: TextStyle(color: kFormTextColor),
               ),
             ),
             const SizedBox(height: 16),
@@ -91,7 +100,7 @@ class _ProfilePageState extends State<ProfilePage> {
             // Veículo
             const Text(
               "Vehicle Information",
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: kFormTextColor),
             ),
             const SizedBox(height: 8),
             TextField(
@@ -100,6 +109,52 @@ class _ProfilePageState extends State<ProfilePage> {
                 hintText: "Make/Model",
                 border: OutlineInputBorder(),
               ),
+            ),
+            const SizedBox(height: 16),
+            TextField(
+              controller: _vehicleLicensePlateController,
+              decoration: const InputDecoration(
+                hintText: "License Plate",
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+              ElevatedButton(
+                onPressed: () {
+                // Save action
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text("Profile saved!")),
+                );
+                },
+                child: const Text("Save"),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                // Edit action
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text("Edit mode enabled!")),
+                );
+                },
+                child: const Text("Edit"),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                // Delete vehicle action
+                _vehicleInfoController.clear();
+                _vehicleLicensePlateController.clear();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text("Vehicle information deleted!")),
+                );
+                },
+                style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red,
+                ),
+                child: const Text("Delete"),
+              ),
+              ],
             ),
           ],
         ),
