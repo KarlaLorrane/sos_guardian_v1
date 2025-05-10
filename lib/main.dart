@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'profilepage.dart';
 import 'historypage.dart';
 import 'settingspage.dart';
+import 'map_screen.dart';
+import 'home_screen.dart';
 
 
 void main() {
@@ -58,7 +60,7 @@ class _GuardianHomePageState extends State<GuardianHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    const double sosButtonHeight = 50;
+    
 
     return Scaffold(
       appBar: AppBar(
@@ -99,52 +101,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const double sosButtonHeight = 50;
-
-    return Column(
-      children: [
-        // --- SafeArea ---
-        SizedBox(
-          height: sosButtonHeight,
-          child: SafeArea(
-            bottom: false,
-            child: Center(
-              // logo
-              child: Image.asset(
-                '/guardiansoslogo.png',
-                height: sosButtonHeight * 2.6,
-              ),
-            ),
-          ),
-        ),
-
-        // --- botão SOS ---
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Center(
-              child: ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
-                  minimumSize: const Size.fromHeight(double.infinity),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-                icon: const Icon(Icons.warning, color: Colors.white),
-                label: const Text(
-                  'SOS',
-                  style: TextStyle(color: Colors.white, fontSize: 28),
-                ),
-                onPressed: () {
-                  // ação de SOS
-                },
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
+    //return const Center(child: Text('Home Screen'));
+    return const HomeScreenPage();
   }
 }
 
